@@ -20,9 +20,21 @@ grad = zeros(size(theta));
 %
 
 
+h = X * theta;
+
+theta_ohne_zero = theta(2:length(theta));
 
 
+reg = (lambda / (2 * m)) * (theta_ohne_zero' * theta_ohne_zero);
 
+J = (1 / (2 * m)) * sum(power (h - y, 2)) + reg;
+
+
+temp = theta;
+temp(1) = 0;
+
+reg_derivation = (lambda / m) * temp;
+grad = (1 / m) * sum((h - y) .* X) + reg_derivation';
 
 
 
