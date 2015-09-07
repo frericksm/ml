@@ -28,8 +28,18 @@ end
 [m n] = size(X);
 K = size(initial_centroids, 1);
 centroids = initial_centroids;
+
+
+% Initialize the centroids to be random examples
+% Randomly reorder the indices of examples
+randidx = randperm(size(X, 1));
+% Take the first K examples as centroids
+centroids = X(randidx(1:K), :);
+
+
 previous_centroids = centroids;
 idx = zeros(m, 1);
+
 
 % Run K-Means
 for i=1:max_iters

@@ -23,6 +23,16 @@ idx = zeros(size(X,1), 1);
 
 
 
+for i = 1:size(X,1)
+  norms = zeros(centroids, 1);
+  for k = 1:K
+    norms(k) = norm(X(i,:) - centroids(k,:));
+  end
+  [min_value, min_index] = min(norms);
+  idx(i) = min_index;
+end
+
+
 
 
 
